@@ -10,7 +10,7 @@ namespace Helyjegy_H2
     {
         static void Main(string[] args)
         {
-            //élkjélkj
+            //élkjélkjkjkj
         }
     }
 }
