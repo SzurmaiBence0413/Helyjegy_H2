@@ -10,7 +10,10 @@ namespace Helyjegy_H2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Helo1");
+            string fajl = "eladott.txt";
+            utazoIroda utazoIroda = new utazoIroda(fajl);
+
+            Console.ReadLine();
         }
     }
 }
