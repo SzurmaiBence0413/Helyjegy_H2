@@ -21,8 +21,15 @@ namespace Helyjegy_H2
         private void Beolvas()
         {
             string[] sorok = File.ReadAllLines(fajl);
-            int mutato = 0;
-            string
+            for (int i = 1; i < sorok.Length; i++)
+            {
+                string[] oszlopok = sorok[i].Split(' ');
+                int ules = int.Parse(oszlopok[0]);
+                int felszall = int.Parse(oszlopok[1]);
+                int leszall = int.Parse(oszlopok[2]);
+                utazasokLista.Add(new Utas(ules, felszall, leszall);
+            }
+
         }
     }
 }
