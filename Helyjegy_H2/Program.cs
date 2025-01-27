@@ -13,6 +13,12 @@ namespace Helyjegy_H2
             string fajl = "eladott.txt";
             utazoIroda utazoIroda = new utazoIroda(fajl);
 
+            Console.WriteLine("2. feladat");
+            utazoIroda.LegutolsoJegyvasarloAdatai();
+
+            Console.WriteLine("3. feladat");
+            utazoIroda.TejlesUtatVegigUtaztak();
+
             Console.ReadLine();
         }
     }
