@@ -11,7 +11,8 @@ namespace Helyjegy_H2
     {
         private string fajl;
         List<Utas> utazokLista = new List<Utas>();
-       
+        List<Utazas> utazasok = new List<Utazas>();
+
 
         public utazoIroda(string fajl)
         {
@@ -21,29 +22,37 @@ namespace Helyjegy_H2
 
         internal void LegutolsoJegyvasarloAdatai()
         {
-            int utolsoUtasFelszal = 0;
-            foreach (var utas in utazokLista)
+            int utolsoUtasIndexe = utazokLista.Count - 1;
+            for (int i = 0; i < utazokLista.Count; i++)
             {
-                if (utas.felszall > utolsoUtasFelszal)
+                if (utazokLista[i] = utolsoUtasIndexe)
                 {
-                    utolsoUtasFelszal = utas.felszall;
+
                 }
-            }
+            }  
 
-            var lekerdezes = utazokLista
-                 .Where(u => u.felszall == utolsoUtasFelszal)
-                 .Select(g => new { sorszam = g.ules, g.tav });
-
-            foreach (var utas in lekerdezes)
-            {
-                Console.WriteLine("üles sorszáma: {0}, távolság: {1}",utas.sorszam,utas.tav);
-            }
+          
           
         }
 
         internal void TejlesUtatVegigUtaztak()
         {
-            
+            List<int> sorszamok = new List<int>();
+            foreach (var utas in utazokLista)
+            {
+              foreach(var u in utazasok)
+                {
+                    if (utas.tav == u.vonalHossz)
+                    {
+                        sorszamok.Add(utas.ules);
+                    }
+                }
+            }
+
+            foreach (var sorszam in sorszamok)
+            {
+                Console.Write("{0} ",sorszam);
+            }
         }
 
         private void Beolvas()
@@ -53,7 +62,12 @@ namespace Helyjegy_H2
             {
                 if (i == 0)
                 {
-                    string[] elsosor = sorok[0].Split(' ');
+                    string[] oszlopok = sorok[i].Split(' ');
+                    int eladottjegyekSzama = int.Parse(oszlopok[0]);
+                    int vonalHossz = int.Parse(oszlopok[1]);
+                    int fizetendo = int.Parse(oszlopok[2]);
+                    utazasok.Add(new Utazas(eladottjegyekSzama, vonalHossz, fizetendo));
+
                 }
                 else
                 {
