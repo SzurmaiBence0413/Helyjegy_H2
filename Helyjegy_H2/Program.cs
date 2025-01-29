@@ -17,8 +17,10 @@ namespace Helyjegy_H2
             utazoIroda.LegutolsoJegyvasarloAdatai();
 
             Console.WriteLine("3. feladat");
-            utazoIroda.TejlesUtatVegigUtaztak(); 
+            utazoIroda.TejlesUtatVegigUtaztak();
 
+            Console.WriteLine("4. feladat");
+            utazoIroda.Bevetel();
             Console.ReadLine();
         }
     }

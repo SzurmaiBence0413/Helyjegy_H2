@@ -20,14 +20,26 @@ namespace Helyjegy_H2
             Beolvas();
         }
 
+        internal void Bevetel()
+        {
+            double bevetel = 0;
+            foreach (var utas in utazokLista)
+            {
+                bevetel += utas.tav * Utazas.
+            }
+        }
+
+       
+        
+
         internal void LegutolsoJegyvasarloAdatai()
         {
             int utolsoUtasIndexe = utazokLista.Count - 1;
             for (int i = 0; i < utazokLista.Count; i++)
             {
-                if (utazokLista[i] = utolsoUtasIndexe)
+                if (i == utolsoUtasIndexe)
                 {
-
+                    Console.WriteLine("ülés sorszáma: {0}, beutazott távolság {1}", utazokLista[i].ules, utazokLista[i].tav);
                 }
             }  
 
