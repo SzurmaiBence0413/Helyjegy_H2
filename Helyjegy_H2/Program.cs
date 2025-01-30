@@ -21,6 +21,7 @@ namespace Helyjegy_H2
 
             Console.WriteLine("4. feladat");
             utazoIroda.Bevetel();
+
             Console.ReadLine();
         }
     }

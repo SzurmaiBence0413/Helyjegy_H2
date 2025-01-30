@@ -22,11 +22,7 @@ namespace Helyjegy_H2
 
         internal void Bevetel()
         {
-            double bevetel = 0;
-            foreach (var utas in utazokLista)
-            {
-                bevetel += utas.tav * Utazas.
-            }
+          
         }
 
        
