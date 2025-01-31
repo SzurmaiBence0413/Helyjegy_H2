@@ -19,7 +19,7 @@ namespace Helyjegy_H2
             Console.WriteLine("3. feladat");
             utazoIroda.TejlesUtatVegigUtaztak();
 
-            Console.WriteLine("4. feladat");
+            Console.WriteLine("\n4. feladat");
             utazoIroda.Bevetel();
 
             Console.ReadLine();

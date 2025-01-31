@@ -22,7 +22,12 @@ namespace Helyjegy_H2
 
         internal void Bevetel()
         {
-          
+            double jegyAr = 0;
+            double bevetel = 0;
+            foreach (var utas in utazokLista)
+            {
+              
+            }
         }
 
        
@@ -42,6 +47,8 @@ namespace Helyjegy_H2
           
           
         }
+
+     
 
         internal void TejlesUtatVegigUtaztak()
         {
