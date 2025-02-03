@@ -11,7 +11,7 @@ namespace Helyjegy_H2
         static void Main(string[] args)
         {
             string fajl = "eladott.txt";
-            utazoIroda utazoIroda = new utazoIroda(fajl);
+            UtazoIroda utazoIroda = new UtazoIroda(fajl);
 
             Console.WriteLine("2. feladat");
             utazoIroda.LegutolsoJegyvasarloAdatai();
@@ -21,6 +21,12 @@ namespace Helyjegy_H2
 
             Console.WriteLine("\n4. feladat");
             utazoIroda.Bevetel();
+
+            Console.WriteLine("\n5. feladat");
+            //utazoIroda.UtolsoElottiMegalloAdatai();
+
+            Console.WriteLine("\n6. feladat");
+            utazoIroda.MegallokSzama();
 
             Console.ReadLine();
         }

@@ -47,7 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utas.cs" />
     <Compile Include="Utazas.cs" />
-    <Compile Include="utazoIroda.cs" />
+    <Compile Include="UtazoIroda.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

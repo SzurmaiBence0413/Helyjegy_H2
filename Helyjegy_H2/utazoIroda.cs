@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace Helyjegy_H2
 {
-    internal class utazoIroda
+    internal class UtazoIroda
     {
         private string fajl;
         List<Utas> utazokLista = new List<Utas>();
-        List<Utazas> utazasok = new List<Utazas>();
+   
 
 
-        public utazoIroda(string fajl)
+        public UtazoIroda(string fajl)
         {
             this.fajl = fajl;
             Beolvas();
@@ -22,16 +22,34 @@ namespace Helyjegy_H2
 
         internal void Bevetel()
         {
-            double jegyAr = 0;
-            double bevetel = 0;
-            foreach (var utas in utazokLista)
+            int ar = 0;
+            int Bevetel = 0;
+            foreach (var utas  in utazokLista )
             {
-              
+                ar += utas.tav / 10 * Utazas.fizetendo;
+                int kerekitettAr = OtreKerekito(ar);
+                Bevetel+= kerekitettAr;
+            }
+
+
+            Console.WriteLine("Ennyi bevétel származott a társaságnak a jegyekből: {0} Ft",Bevetel);
+        }
+
+        private int OtreKerekito(int ar)
+        {
+            int maradék = ar % 5;
+
+            if (maradék < 3)
+            {
+                return ar - maradék; // Lefelé kerekítés
+            }
+            else
+            {
+                return ar + (5 - maradék); // Felfelé kerekítés
             }
         }
 
-       
-        
+
 
         internal void LegutolsoJegyvasarloAdatai()
         {
@@ -40,7 +58,7 @@ namespace Helyjegy_H2
             {
                 if (i == utolsoUtasIndexe)
                 {
-                    Console.WriteLine("ülés sorszáma: {0}, beutazott távolság {1}", utazokLista[i].ules, utazokLista[i].tav);
+                    Console.WriteLine("ülés sorszáma: {0}, beutazott távolság {1}", utazokLista[i].ulesId, utazokLista[i].tav);
                 }
             }  
 
@@ -53,14 +71,12 @@ namespace Helyjegy_H2
         internal void TejlesUtatVegigUtaztak()
         {
             List<int> sorszamok = new List<int>();
+            int teljesTav = Utazas.vonalHossz;
             foreach (var utas in utazokLista)
             {
-              foreach(var u in utazasok)
+                if (utas.tav == teljesTav)
                 {
-                    if (utas.tav == u.vonalHossz)
-                    {
-                        sorszamok.Add(utas.ules);
-                    }
+                    sorszamok.Add(utas.ulesId);
                 }
             }
 
@@ -81,7 +97,9 @@ namespace Helyjegy_H2
                     int eladottjegyekSzama = int.Parse(oszlopok[0]);
                     int vonalHossz = int.Parse(oszlopok[1]);
                     int fizetendo = int.Parse(oszlopok[2]);
-                    utazasok.Add(new Utazas(eladottjegyekSzama, vonalHossz, fizetendo));
+                    Utazas.eladottjegyekSzama = eladottjegyekSzama;
+                    Utazas.vonalHossz = vonalHossz;
+                    Utazas.fizetendo = fizetendo;
 
                 }
                 else
@@ -96,6 +114,21 @@ namespace Helyjegy_H2
                 }
             } 
 
+        }
+
+        internal void UtolsoElottiMegalloAdatai()
+        {
+            
+
+        }
+
+        internal void MegallokSzama()
+        {
+            var lekerdezes = utazokLista
+                .GroupBy(u => u.felszall)
+                .OrderBy(g => g.Key)
+
+          
         }
     }
 }
