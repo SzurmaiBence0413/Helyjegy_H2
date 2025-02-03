@@ -23,10 +23,13 @@ namespace Helyjegy_H2
             utazoIroda.Bevetel();
 
             Console.WriteLine("\n5. feladat");
-            //utazoIroda.UtolsoElottiMegalloAdatai();
+            utazoIroda.UtolsoElottiMegalloAdatai();
 
             Console.WriteLine("\n6. feladat");
             utazoIroda.MegallokSzama();
+
+            Console.WriteLine("\n7. feladat");
+
 
             Console.ReadLine();
         }

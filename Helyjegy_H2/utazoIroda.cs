@@ -124,11 +124,17 @@ namespace Helyjegy_H2
 
         internal void MegallokSzama()
         {
-            var lekerdezes = utazokLista
-                .GroupBy(u => u.felszall)
-                .OrderBy(g => g.Key)
+           List<int> megallok = new List<int>();
+            foreach (var megallo in utazokLista)
+            {
+                if (!megallok.Contains(megallo.felszall))
+                {
+                    megallok.Add(megallo.felszall);
+                }
+            }
+            Console.WriteLine("Ennyi megálló volt {0}",megallok.Count);
 
-          
+
         }
     }
 }
