@@ -11,7 +11,8 @@ namespace Helyjegy_H2
     {
         private string fajl;
         List<Utas> utazokLista = new List<Utas>();
-   
+           List<int> megallokLista = new List<int>();
+
 
 
         public UtazoIroda(string fajl)
@@ -118,21 +119,26 @@ namespace Helyjegy_H2
 
         internal void UtolsoElottiMegalloAdatai()
         {
-            
+            int leszallokSzama = 0;
+            int felszallokSzama = 0;
+            int utolsoMegalloSzama = megallokLista.Count -2;
+            for (int i = 0; i < megallokLista.Count;i++)
+            {
 
+            }
+            Console.WriteLine("ennyi ember szállt fel: {0}, ennyi ember szállt le: {1}",felszallokSzama,leszallokSzama);
         }
 
         internal void MegallokSzama()
         {
-           List<int> megallok = new List<int>();
             foreach (var megallo in utazokLista)
             {
-                if (!megallok.Contains(megallo.felszall))
+                if (!megallokLista.Contains(megallo.felszall))
                 {
-                    megallok.Add(megallo.felszall);
+                    megallokLista.Add(megallo.felszall);
                 }
             }
-            Console.WriteLine("Ennyi megálló volt {0}",megallok.Count);
+            Console.WriteLine("Ennyi megálló volt {0}",megallokLista.Count);
 
 
         }

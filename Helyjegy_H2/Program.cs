@@ -16,17 +16,19 @@ namespace Helyjegy_H2
             Console.WriteLine("2. feladat");
             utazoIroda.LegutolsoJegyvasarloAdatai();
 
-            Console.WriteLine("3. feladat");
+            Console.WriteLine("\n3. feladat");
             utazoIroda.TejlesUtatVegigUtaztak();
 
             Console.WriteLine("\n4. feladat");
             utazoIroda.Bevetel();
 
+            Console.WriteLine("\n6. feladat");
+            utazoIroda.MegallokSzama();
+
             Console.WriteLine("\n5. feladat");
             utazoIroda.UtolsoElottiMegalloAdatai();
 
-            Console.WriteLine("\n6. feladat");
-            utazoIroda.MegallokSzama();
+ 
 
             Console.WriteLine("\n7. feladat");
 
