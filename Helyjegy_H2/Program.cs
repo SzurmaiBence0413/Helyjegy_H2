@@ -31,7 +31,7 @@ namespace Helyjegy_H2
  
 
             Console.WriteLine("\n7. feladat");
-
+            utazoIroda.UtasLisat();
 
             Console.ReadLine();
         }
