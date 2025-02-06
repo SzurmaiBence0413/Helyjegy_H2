@@ -119,35 +119,29 @@ namespace Helyjegy_H2
 
         internal void UtolsoElottiMegalloAdatai()
         {
-            int utolsoElottiMegallo = -1;
-            int feldb = 0;
-            int ledb = 0;
-            for (int i = 0; i < n; i++)
-            {
-                if (utolsoElottiMegallo < utazokLista[i].felszall && utazokLista[i].felszall != hossz)
-                {
-                    utolsoElottiMegallo = utazokLista[i].felszall;
-                    feldb = 1;
-                }
-                else if (utolsoElottiMegallo == utazokLista[i].Fel)
-                {
-                    feldb++;
-                }
-            }
-            for (int i = 0; i < n; i++)
-            {
-                if (ueáll < [i].Le && járat[i].Le != hossz)
-                {
-                    ueáll = járat[i].Le;
-                    ledb = 1;
-                    feldb = 0;
-                }
-                else if (ueáll == járat[i].Le)
-                {
-                    ledb++;
-                }
-            }
-            Console.WriteLine("Az utolsó megállóban {0} felszálló és {1} leszálló volt.", feldb, ledb);
+            int utolsó_előtti_le = (from i in utazokLista  //utolsó előtti megálló, ahol leszálló volt
+                                    orderby i.leszall
+                                    where i.leszall != Utazas.vonalHossz
+                                    select i.leszall).Last();
+
+            int utolsó_előtti_fel = (from i in utazokLista  //utolsó előtti megálló, ahol felszálló volt
+                                     orderby i.felszall
+                                     where i.felszall != Utazas.vonalHossz
+                                     select i.felszall).Last();
+
+            int utolsó_előtti = Math.Max(utolsó_előtti_le, utolsó_előtti_fel); //utolsó előtti megálló ahol leszálló és/vagy felszálló volt
+
+            var leSzallokSzama = (from i in utazokLista
+                           where i.leszall == utolsó_előtti
+                           select i).Count();
+
+           
+
+            var felSZallokSzama = (from i in utazokLista
+                            where i.felszall == utolsó_előtti
+                            select i).Count();
+
+            Console.WriteLine("Utolsó állomás előtt felszállók száma: {0} fő, leszállók száma {1}", felSZallokSzama, leSzallokSzama);
         }
 
         internal void MegallokSzama()
