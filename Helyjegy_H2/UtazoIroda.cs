@@ -119,14 +119,35 @@ namespace Helyjegy_H2
 
         internal void UtolsoElottiMegalloAdatai()
         {
-            int leszallokSzama = 0;
-            int felszallokSzama = 0;
-            int utolsoMegalloSzama = megallokLista.Count -2;
-            for (int i = 0; i < megallokLista.Count;i++)
+            int utolsoElottiMegallo = -1;
+            int feldb = 0;
+            int ledb = 0;
+            for (int i = 0; i < n; i++)
             {
-
+                if (utolsoElottiMegallo < utazokLista[i].felszall && utazokLista[i].felszall != hossz)
+                {
+                    utolsoElottiMegallo = utazokLista[i].felszall;
+                    feldb = 1;
+                }
+                else if (utolsoElottiMegallo == utazokLista[i].Fel)
+                {
+                    feldb++;
+                }
             }
-            Console.WriteLine("ennyi ember szállt fel: {0}, ennyi ember szállt le: {1}",felszallokSzama,leszallokSzama);
+            for (int i = 0; i < n; i++)
+            {
+                if (ueáll < [i].Le && járat[i].Le != hossz)
+                {
+                    ueáll = járat[i].Le;
+                    ledb = 1;
+                    feldb = 0;
+                }
+                else if (ueáll == járat[i].Le)
+                {
+                    ledb++;
+                }
+            }
+            Console.WriteLine("Az utolsó megállóban {0} felszálló és {1} leszálló volt.", feldb, ledb);
         }
 
         internal void MegallokSzama()
