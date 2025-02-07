@@ -161,9 +161,18 @@ namespace Helyjegy_H2
             int bekertTavolsag = int.Parse(Console.ReadLine());
             string celFajlNeve = "kihol.txt";
             List<Utas> KeresettUtazokLista = new List<Utas>();
-            var lekerdezes = utazokLista
-                .GroupBy(u => u.leszall, u => u.felszall)
-                
+            int ketmegalloKozott = 0;
+            for (int i = 0; i < utazokLista.Count; i++)
+            {
+                ketmegalloKozott = utazokLista[i].leszall - utazokLista[i].felszall;
+                if (bekertTavolsag > utazokLista[i].felszall && bekertTavolsag < utazokLista[i].leszall)
+                {
+                    Console.WriteLine("{0}. ülés: {1}", i + 1, utazokLista[i].ulesId);
+                }
+             
+
+            }
+
             
                 
            
