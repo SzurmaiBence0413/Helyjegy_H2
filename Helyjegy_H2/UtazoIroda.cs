@@ -203,8 +203,8 @@ namespace Helyjegy_H2
                     var utas = KeresettUtazokLista.FirstOrDefault(u => u.ulesId == i);
                     if (utas != null)
                     {
-                        writer.WriteLine($"{i}. ülés: {KeresettUtazokLista.IndexOf(utas) + 1}. utas ");
-                        Console.WriteLine($"{i}. ülés: {KeresettUtazokLista.IndexOf(utas) + 1}. utas ");
+                        writer.WriteLine($"{i}. ülés: {utazokLista.IndexOf(utas) + 1}. utas ");
+                        Console.WriteLine($"{i}. ülés: {utazokLista.IndexOf(utas) + 1}. utas ");
                     }
                     else
                     {
