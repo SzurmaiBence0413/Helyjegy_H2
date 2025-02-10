@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Helyjegy_H2
@@ -161,18 +162,32 @@ namespace Helyjegy_H2
             int bekertTavolsag = int.Parse(Console.ReadLine());
             string celFajlNeve = "kihol.txt";
             List<Utas> KeresettUtazokLista = new List<Utas>();
-            int ketmegalloKozott = 0;
-            for (int i = 0; i < utazokLista.Count; i++)
+            bool megalloE = false;
+            if (megallokLista.Contains(bekertTavolsag))
             {
-                ketmegalloKozott = utazokLista[i].leszall - utazokLista[i].felszall;
-                if (bekertTavolsag > utazokLista[i].felszall && bekertTavolsag < utazokLista[i].leszall)
-                {
-                    Console.WriteLine("{0}. ülés: {1}", i + 1, utazokLista[i].ulesId);
-                }
-             
-
+                megalloE = true;
             }
 
+            foreach (var utas in utazokLista)
+            {
+                if (megalloE)
+                {
+                    if (utas.felszall ==  bekertTavolsag)
+                    {
+                        KeresettUtazokLista.Add(utas);
+                    }
+                }
+                else
+                {
+                    if (utas.felszall == bekertTavolsag || utas.leszall == bekertTavolsag)
+                    {
+                        KeresettUtazokLista.Add(utas);
+                    }
+                }
+            }
+           
+            
+            
             
                 
            
