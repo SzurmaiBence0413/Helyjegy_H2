@@ -163,34 +163,58 @@ namespace Helyjegy_H2
             string celFajlNeve = "kihol.txt";
             List<Utas> KeresettUtazokLista = new List<Utas>();
             bool megalloE = false;
+
+            // Ellenőrizzük, hogy a megadott távolság megálló-e
             if (megallokLista.Contains(bekertTavolsag))
             {
                 megalloE = true;
             }
 
+            // Keresés az utasok között
             foreach (var utas in utazokLista)
             {
                 if (megalloE)
                 {
-                    if (utas.felszall ==  bekertTavolsag)
+                    // Ha megálló, csak a felszállókat vesszük figyelembe
+                    if (utas.felszall == bekertTavolsag || utas.leszall == bekertTavolsag)
                     {
                         KeresettUtazokLista.Add(utas);
                     }
                 }
                 else
                 {
-                    if (utas.felszall == bekertTavolsag || utas.leszall == bekertTavolsag)
+                    // Ha nem megálló, akkor a felszállókat és leszállókat is figyelembe vesszük
+                    if (utas.felszall < bekertTavolsag && utas.leszall >  bekertTavolsag)
                     {
                         KeresettUtazokLista.Add(utas);
                     }
                 }
             }
-           
-            
-            
-            
-                
-           
+
+            // Fájlba írás
+            using (StreamWriter writer = new StreamWriter(celFajlNeve))
+            {
+                for (int i = 1; i <= 48; i++) // 1-től 8-ig, ha 8 ülés van
+                {
+                    for (int u = 0; u < utazokLista.Count; u++)
+                    {
+
+                    }
+                    var utas = KeresettUtazokLista.FirstOrDefault(u => u.ulesId == i);
+                    if (utas != null)
+                    {
+                        writer.WriteLine($"{i}. ülés: {KeresettUtazokLista.IndexOf(utas) + 1}. utas ");
+                        Console.WriteLine($"{i}. ülés: {KeresettUtazokLista.IndexOf(utas) + 1}. utas ");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{i+1}. ülés: üres");
+                        Console.WriteLine($"{i + 1}. ülés: üres");
+                    }
+                }
+            }
+
+            Console.WriteLine("Az utaslista a kihol.txt fájlba került.");
         }
     }
 }
