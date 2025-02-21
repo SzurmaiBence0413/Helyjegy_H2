@@ -194,7 +194,7 @@ namespace Helyjegy_H2
             // Fájlba írás
             using (StreamWriter writer = new StreamWriter(celFajlNeve))
             {
-                for (int i = 1; i <= 48; i++) // 1-től 8-ig, ha 8 ülés van
+                for (int i = 1; i <= 48; i++) // 1-től 48-ig, ha 48 ülés van
                 {
                     for (int u = 0; u < utazokLista.Count; u++)
                     {
