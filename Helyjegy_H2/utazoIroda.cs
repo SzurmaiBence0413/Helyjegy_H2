@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Helyjegy_H2
@@ -151,31 +152,73 @@ namespace Helyjegy_H2
         {
 
             var megallokSzama = (from i in utazokLista select i.felszall).Union(from i in utazokLista select i.leszall);
-            Console.WriteLine("A busznak {0} db megállója volt!", megallokSzama.Count() - 2);
+            foreach ( var megallo in megallokSzama)
+            {
+                megallokLista.Add(megallo);
+            }
+            Console.WriteLine("A busznak {0} db megállója volt!", megallokLista.Count() - 2);
 
         }
 
         internal void UtasLisat()
         {
-            Console.Write("Adj meg egy távolságot: ");
+            Console.Write("Adja meg, hogy az út mely kilométerén kéri az utaslistát!");
             int bekertTavolsag = int.Parse(Console.ReadLine());
             string celFajlNeve = "kihol.txt";
             List<Utas> KeresettUtazokLista = new List<Utas>();
-            int ketmegalloKozott = 0;
-            for (int i = 0; i < utazokLista.Count; i++)
-            {
-                ketmegalloKozott = utazokLista[i].leszall - utazokLista[i].felszall;
-                if (bekertTavolsag > utazokLista[i].felszall && bekertTavolsag < utazokLista[i].leszall)
-                {
-                    Console.WriteLine("{0}. ülés: {1}", i + 1, utazokLista[i].ulesId);
-                }
-             
+            bool megalloE = false;
 
+            // Ellenőrizzük, hogy a megadott távolság megálló-e
+            if (megallokLista.Contains(bekertTavolsag))
+            {
+                megalloE = true;
             }
 
-            
-                
-           
+            // Keresés az utasok között
+            foreach (var utas in utazokLista)
+            {
+                if (megalloE)
+                {
+                    // Ha megálló, csak a felszállókat vesszük figyelembe
+                    if (utas.felszall == bekertTavolsag || utas.leszall == bekertTavolsag)
+                    {
+                        KeresettUtazokLista.Add(utas);
+                    }
+                }
+                else
+                {
+                    // Ha nem megálló, akkor a felszállókat és leszállókat is figyelembe vesszük
+                    if (utas.felszall < bekertTavolsag && utas.leszall >  bekertTavolsag)
+                    {
+                        KeresettUtazokLista.Add(utas);
+                    }
+                }
+            }
+
+            // Fájlba írás
+            using (StreamWriter writer = new StreamWriter(celFajlNeve))
+            {
+                for (int i = 1; i <= 48; i++) // 1-től 48-ig, ha 48 ülés van
+                {
+                    for (int u = 0; u < utazokLista.Count; u++)
+                    {
+
+                    }
+                    var utas = KeresettUtazokLista.FirstOrDefault(u => u.ulesId == i);
+                    if (utas != null)
+                    {
+                        writer.WriteLine($"{i}. ülés: {utazokLista.IndexOf(utas) + 1}. utas ");
+                        Console.WriteLine($"{i}. ülés: {utazokLista.IndexOf(utas) + 1}. utas ");
+                    }
+                    else
+                    {
+                        writer.WriteLine($"{i+1}. ülés: üres");
+                        Console.WriteLine($"{i + 1}. ülés: üres");
+                    }
+                }
+            }
+
+            Console.WriteLine("Az utaslista a kihol.txt fájlba került.");
         }
     }
 }
