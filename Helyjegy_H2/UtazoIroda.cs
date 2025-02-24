@@ -48,7 +48,7 @@ namespace Helyjegy_H2
                 return ar - maradék; // Lefelé kerekítés
             }
             else
-            {
+            { 
                 return ar + (5 - maradék); // Felfelé kerekítés
             }
         }
