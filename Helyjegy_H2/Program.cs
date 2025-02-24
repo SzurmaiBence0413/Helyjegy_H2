@@ -25,13 +25,13 @@ namespace Helyjegy_H2
             Console.WriteLine("\n4. feladat");
             utazoIroda.Bevetel();
 
-            //6. Adja meg, hogy hány helyen állt meg a busz a kiinduló állomás és a célállomás között! Az eredményt írja a képernyőre!
-            Console.WriteLine("\n6. feladat");
-            utazoIroda.MegallokSzama();
-
             //5. Írja a képernyőre, hogy a busz végállomást megelőző utolsó megállásánál hányan szálltak fel és le!
             Console.WriteLine("\n5. feladat");
             utazoIroda.UtolsoElottiMegalloAdatai();
+
+            //6. Adja meg, hogy hány helyen állt meg a busz a kiinduló állomás és a célállomás között! Az eredményt írja a képernyőre!
+            Console.WriteLine("\n6. feladat");
+            utazoIroda.MegallokSzama();
 
             //7. Készítsen „utaslistát" az út egy pontjáról! A listában ülésenként tüntesse fel, hogy azt az adott pillanatban melyik utas foglalja el!
             //A pontot, azaz a kiindulási állomástól mért távolságot, a felhasználótól kérje be!

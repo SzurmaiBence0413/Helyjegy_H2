@@ -152,13 +152,17 @@ namespace Helyjegy_H2
         {
 
             var megallokSzama = (from i in utazokLista select i.felszall).Union(from i in utazokLista select i.leszall);
-            Console.WriteLine("A busznak {0} db megállója volt!", megallokSzama.Count() - 2);
+            foreach ( var megallo in megallokSzama)
+            {
+                megallokLista.Add(megallo);
+            }
+            Console.WriteLine("A busznak {0} db megállója volt!", megallokLista.Count() - 2);
 
         }
 
         internal void UtasLisat()
         {
-            Console.Write("Adj meg egy távolságot: ");
+            Console.Write("Adja meg, hogy az út mely kilométerén kéri az utaslistát!");
             int bekertTavolsag = int.Parse(Console.ReadLine());
             string celFajlNeve = "kihol.txt";
             List<Utas> KeresettUtazokLista = new List<Utas>();
