@@ -39,7 +39,7 @@ namespace Helyjegy_H2
             //Az eredményt az ülések sorszámának sorrendjében írja a kihol.txt állományba!
             //Az üres helyek esetén az „üres" szót jelenítse meg! Minden ülés külön sorba kerüljön!
             Console.WriteLine("\n7. feladat");
-            utazoIroda.UtasLisat();
+            utazoIroda.UtasLista();
 
             Console.ReadLine();
         }

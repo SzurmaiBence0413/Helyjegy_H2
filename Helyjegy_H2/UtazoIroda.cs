@@ -63,7 +63,8 @@ namespace Helyjegy_H2
             {
                 if (i == utolsoUtasIndexe)
                 {
-                    Console.WriteLine("ülés sorszáma: {0}, beutazott távolság {1}", utazokLista[i].ulesId, utazokLista[i].tav); // Utolsó jegyvásárló álltal beutazott távolság és a ülésének sorszámát kiírjuk
+                    Console.WriteLine("ülés sorszáma: {0}, beutazott távolság {1}",
+                        utazokLista[i].ulesId, utazokLista[i].tav); // Utolsó jegyvásárló álltal beutazott távolság és a ülésének sorszámát kiírjuk
                 }
             }
 
@@ -123,17 +124,20 @@ namespace Helyjegy_H2
 
         internal void UtolsoElottiMegalloAdatai()
         {
-            int utolsoElottiLe = (from i in utazokLista  //utolsó előtti megálló, ahol leszálló volt
+            //utolsó előtti megálló, ahol leszálló volt
+            int utolsoElottiLe = (from i in utazokLista  
                                   orderby i.leszall
                                   where i.leszall != Utazas.vonalHossz
                                   select i.leszall).Last();
 
-            int utolsoElottiFel = (from i in utazokLista  //utolsó előtti megálló, ahol felszálló volt
+            //utolsó előtti megálló, ahol felszálló volt
+            int utolsoElottiFel = (from i in utazokLista  
                                    orderby i.felszall
                                    where i.felszall != Utazas.vonalHossz
                                    select i.felszall).Last();
 
-            int utolsEllotti = Math.Max(utolsoElottiLe, utolsoElottiFel); //utolsó előtti megálló ahol leszálló és/vagy felszálló volt
+            //utolsó előtti megálló ahol leszálló és/vagy felszálló volt
+            int utolsEllotti = Math.Max(utolsoElottiLe, utolsoElottiFel); 
 
             var leSzallokSzama = (from i in utazokLista
                                   where i.leszall == utolsEllotti
@@ -145,22 +149,26 @@ namespace Helyjegy_H2
                                    where i.felszall == utolsEllotti
                                    select i).Count();
 
-            Console.WriteLine("Utolsó állomás előtt felszállók száma: {0} fő, leszállók száma {1}", felSZallokSzama, leSzallokSzama);
+            Console.WriteLine("Utolsó állomás előtt felszállók száma: {0} fő, leszállók száma {1}",
+                felSZallokSzama, leSzallokSzama);
         }
 
         internal void MegallokSzama()
         {
 
-            var megallokSzama = (from i in utazokLista select i.felszall).Union(from i in utazokLista select i.leszall);
+            var megallokSzama = (from i in utazokLista select i.felszall)
+                                .Union(from i in utazokLista select i.leszall);
+
             foreach ( var megallo in megallokSzama)
             {
                 megallokLista.Add(megallo);
             }
-            Console.WriteLine("A busznak {0} db megállója volt!", megallokLista.Count() - 2);
+            Console.WriteLine("A busznak {0} db megállója volt!",
+                megallokLista.Count() - 2);
 
         }
 
-        internal void UtasLisat()
+        internal void UtasLista()
         {
             Console.Write("Adja meg, hogy az út mely kilométerén kéri az utaslistát!");
             int bekertTavolsag = int.Parse(Console.ReadLine());
